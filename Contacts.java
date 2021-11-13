@@ -110,7 +110,5 @@ public class Contacts {
 				+ ", State=" + State + ", email=" + email + ", zip=" + zip + ", phoneNumber=" + phoneNumber + "]";
 	}
 	
-	
-	
 
 }

@@ -111,6 +111,28 @@ public class edit_addressBook {
 					System.out.println("Please enter a valid number");	
 				}
 			}
+			else {
+				System.out.println("No contact matches the first name you gave");
+			}
+		}
+	}
+	
+	public void delete_contact() {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter the firstname of the contact you want to delete: ");
+		String fName = sc.next();
+		
+		for(int i=0; i<addressbook.size(); i++)
+		{
+			String firstName_of_addressbook = addressbook.get(i).getFirstName();
+			if(fName.equals(firstName_of_addressbook) ) {
+				addressbook.remove(i);
+			}
+			else {
+				System.out.println("No contact matches the first name you gave");
+			}
 		}
 	}
 	
