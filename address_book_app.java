@@ -11,12 +11,17 @@ public class address_book_app {
 		
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Press 1 to add a contact");
+		System.out.println("Press 1 to add a contact or 2 to edit");
 		int decision = sc.nextInt();
 		
+		edit_addressBook contact = new edit_addressBook();
 		if(decision == 1)
 		{
-			addContacts added_contact = new addContacts();
+			contact.add_Contacts();
+		}
+		else if(decision == 2)
+		{
+			contact.edit_contact();
 		}
 		
 		
