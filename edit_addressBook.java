@@ -1,12 +1,12 @@
 package Address_Book;
 
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.Scanner;
 
 public class edit_addressBook {
 	
-	
-	
+	ArrayList<Contacts> addressbook = new ArrayList<Contacts>();
 	public void add_Contacts(){ //adding contacts
 		System.out.println("Adding a contact");
 		@SuppressWarnings("resource")
@@ -38,8 +38,12 @@ public class edit_addressBook {
 	
 	
 		Contacts add_contact = new Contacts(firstName, lastName, Address, City, State, email, zip, phoneNumber);
-		System.out.println(add_contact);
-		address_book_app.addressbook.add(add_contact);
+		//System.out.println(add_contact);
+		addressbook.add(add_contact);
+		System.out.println("contacts of Current Address book");
+		for(int i=0; i<addressbook.size(); i++) {
+			System.out.println(addressbook.get(i));
+		}
 	}
 	
 	
@@ -51,9 +55,9 @@ public class edit_addressBook {
 		System.out.println("Enter the firstname of the contact you want to edit: ");
 		String fName = sc.next();
 		
-		for(int i=0; i<address_book_app.addressbook.size(); i++)
+		for(int i=0; i<addressbook.size(); i++)
 		{
-			String edit_this_contact = address_book_app.addressbook.get(i).getFirstName();
+			String edit_this_contact = addressbook.get(i).getFirstName();
 			System.out.println("firstName_of_addressbook: " +edit_this_contact);
 			if(fName.equals(edit_this_contact) ) {
 				System.out.println("What do you want to edit?");
@@ -71,42 +75,42 @@ public class edit_addressBook {
 				case 1:
 					System.out.println("Enter the value: ");
 					String fname = sc.next();
-					address_book_app.addressbook.get(i).setFirstName(fname);
+					addressbook.get(i).setFirstName(fname);
 					break;
 				case 2:
 					System.out.println("Enter the value: ");
 					String lname = sc.next();
-					address_book_app.addressbook.get(i).setLastName(lname);
+					addressbook.get(i).setLastName(lname);
 					break;
 				case 3:
 					System.out.println("Enter the value: ");
 					String Address = sc.next();
-					address_book_app.addressbook.get(i).setAddress(Address);
+					addressbook.get(i).setAddress(Address);
 					break;
 				case 4:
 					System.out.println("Enter the value: ");
 					String City = sc.next();
-					address_book_app.addressbook.get(i).setCity(City);
+					addressbook.get(i).setCity(City);
 					break;
 				case 5:
 					System.out.println("Enter the value: ");
 					String State = sc.next();
-					address_book_app.addressbook.get(i).setState(State);
+					addressbook.get(i).setState(State);
 					break;
 				case 6:
 					System.out.println("Enter the value: ");
 					String email = sc.next();
-					address_book_app.addressbook.get(i).firstName = email ;
+					addressbook.get(i).firstName = email ;
 					break;
 				case 7:
 					System.out.println("Enter the value: ");
 					int zip = sc.nextInt();
-					address_book_app.addressbook.get(i).setZip(zip);
+					addressbook.get(i).setZip(zip);
 					break;
 				case 8:
 					System.out.println("Enter the value: ");
 					int phoneNumber = sc.nextInt();
-					address_book_app.addressbook.get(i).setPhoneNumber(phoneNumber);
+					addressbook.get(i).setPhoneNumber(phoneNumber);
 					break;
 				default:
 					System.out.println("Please enter a valid number");	
@@ -126,12 +130,12 @@ public class edit_addressBook {
 		System.out.println("Enter the firstname of the contact you want to delete: ");
 		String fName = sc.next();
 		//System.out.println("fName: " +fName);
-		for(int i=0; i<address_book_app.addressbook.size(); i++)
+		for(int i=0; i<addressbook.size(); i++)
 		{
-			String firstName_of_addressbook = address_book_app.addressbook.get(i).getFirstName();
+			String firstName_of_addressbook = addressbook.get(i).getFirstName();
 			//System.out.println("firstName_of_addressbook: " +firstName_of_addressbook);
 			if(fName.equals(firstName_of_addressbook) ) {
-				address_book_app.addressbook.remove(i);
+				addressbook.remove(i);
 				System.out.println("the selected contact deleted successfully");
 			}
 			else {
