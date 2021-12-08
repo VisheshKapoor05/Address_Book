@@ -121,6 +121,7 @@ public class edit_addressBook {
 			}
 		}
 		System.out.println("the selected contact edited successfully: ");
+
 	}
 	
 	public void delete_contact() {
