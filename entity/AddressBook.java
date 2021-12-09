@@ -1,15 +1,16 @@
 package Address_Book.entity;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AddressBook {
 	
 	private String addressBookName;
-	public ArrayList<Contact> contactsList;
+	public Set<Contact> contactsList;
 	
 	public AddressBook(String addressbookName) {
 		this.addressBookName = addressbookName;
-		contactsList = new ArrayList<Contact>();
+		contactsList = new HashSet<Contact>();
 	}
 	
 	@Override
@@ -17,5 +18,4 @@ public class AddressBook {
 		return "AddressBooks [AddressBookName=" + addressBookName + ", contacts= " + contactsList + "]";
 	}
 	
-
 }

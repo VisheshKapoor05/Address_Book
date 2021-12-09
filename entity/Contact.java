@@ -1,5 +1,7 @@
 package Address_Book.entity;
 
+import java.util.Objects;
+
 public class Contact {
 	private String firstName;
 	private String lastName;
@@ -108,6 +110,25 @@ public class Contact {
 	public String toString() {
 		return "Contacts [firstName=" + firstName + ", lastName=" + lastName + ", Address=" + Address + ", City=" + City
 				+ ", State=" + State + ", email=" + email + ", zip=" + zip + ", phoneNumber=" + phoneNumber + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(firstName, lastName);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contact other = (Contact) obj;
+		return Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName);
 	}
 	
 
