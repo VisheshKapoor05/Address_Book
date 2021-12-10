@@ -6,16 +6,16 @@ import java.util.Set;
 public class AddressBook {
 	
 	private String addressBookName;
-	public Set<Contact> contactsList;
+	public Set<Contact> contactsSet;
 	
 	public AddressBook(String addressbookName) {
 		this.addressBookName = addressbookName;
-		contactsList = new HashSet<Contact>();
+		contactsSet = new HashSet<Contact>();
 	}
 	
 	@Override
 	public String toString() {
-		return "AddressBooks [AddressBookName=" + addressBookName + ", contacts= " + contactsList + "]";
+		return "AddressBooks [AddressBookName=" + addressBookName + ", contacts= " + contactsSet + "]";
 	}
 	
 }
