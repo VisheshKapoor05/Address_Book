@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import Address_Book.Service.AddressBookService;
+import Address_Book.Service.DictionaryServices;
 import Address_Book.entity.AddressBook;
 import Address_Book.entity.Contact;
 
@@ -28,6 +29,7 @@ public class AddressBookDemo {
 		int num = sc.nextInt();
 		
 		AddressBookService addressBookServiceObj = new AddressBookService();
+		DictionaryServices dictionaryServiceObj = new DictionaryServices();
 		
 		while(num != 0) {
 			
@@ -44,28 +46,43 @@ public class AddressBookDemo {
 				System.out.println("Enter the city or state you want to the person to be searched in");
 				String place = sc.next();
 				
-				addressBookServiceObj.searchContact(place);
+				dictionaryServiceObj.searchContact(place);
 			}
 			else if(num == 3 || num == 4) {
 				if(num == 3) {
 					System.out.println("Enter the city you want to view persons of");
 					String city = sc.next();
-					addressBookServiceObj.viewContacts(city, num);
+					dictionaryServiceObj.viewContacts(city, num);
 					
 				}
 				else{
 					System.out.println("Enter the state you want to view persons of");
 					String state = sc.next();
-					addressBookServiceObj.viewContacts(state, num);
+					dictionaryServiceObj.viewContacts(state, num);
+				}
+			}
+			else if(num == 5 || num == 6) {
+				if(num == 5) {
+					System.out.println("Enter the city you want the total count of persons of");
+					String city = sc.next();
+					int count = dictionaryServiceObj.countContacts(city, num);
+					System.out.println("Count: " +count);
+				}
+				if(num == 6) {
+					System.out.println("Enter the state you want the total count of persons of");
+					String state = sc.next();
+					int count = dictionaryServiceObj.countContacts(state, num);
+					System.out.println("Count: " +count);
 				}
 			}
 			else
-				System.out.println("Please enter 1 or 2");
+				System.out.println("Please enter a valid number");
 			
 			System.out.println();
 			System.out.println("Press 1 again if you want to add another address book");
 			System.out.println("or Press 2 to search any person across all the addressBooks");
-			System.out.println("or Press 3 to to view persons by city, 4 to view by state");
+			System.out.println("or Press 3 to view persons by city, 4 to view by state");
+			System.out.println("or Press 5 to get total count of persons by city, 6 to get count by state");
 			System.out.println("or Press 0 to display the AddressBooks and end");
 			num = sc.nextInt();
 			
