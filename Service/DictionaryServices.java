@@ -87,13 +87,41 @@ public class DictionaryServices {
 	}
 	
 	
-	public void sortContacts(String addressBook) {
+	public void sortContacts(String addressBook, int sortByNum) {
 		
-		AddressBookDemo.addressBooksSet.stream()
-		.filter(obj -> obj.getAddressBookName().equals(addressBook))
-		.forEach(obj -> obj.contactsSet.stream()
-				.sorted((contact1,contact2)->contact1.getFirstName().compareTo(contact2.getFirstName()))
-				.forEach(contact->System.out.println(contact)));
+		switch(sortByNum){
+			case 1:
+				AddressBookDemo.addressBooksSet.stream()
+				.filter(obj -> obj.getAddressBookName().equals(addressBook))
+				.forEach(obj -> obj.contactsSet.stream()
+						.sorted((contact1,contact2)->contact1.getFirstName().compareTo(contact2.getFirstName()))
+						.forEach(contact->System.out.println(contact)));
+				break;
+				
+			case 2:
+				AddressBookDemo.addressBooksSet.stream()
+				.filter(obj -> obj.getAddressBookName().equals(addressBook))
+				.forEach(obj -> obj.contactsSet.stream()
+						.sorted((contact1,contact2)->contact1.getCity().compareTo(contact2.getCity()))
+						.forEach(contact->System.out.println(contact)));
+				break;
+				
+			case 3:
+				AddressBookDemo.addressBooksSet.stream()
+				.filter(obj -> obj.getAddressBookName().equals(addressBook))
+				.forEach(obj -> obj.contactsSet.stream()
+						.sorted((contact1,contact2)->contact1.getState().compareTo(contact2.getState()))
+						.forEach(contact->System.out.println(contact)));
+				break;
+				
+			case 4:
+				AddressBookDemo.addressBooksSet.stream()
+				.filter(obj -> obj.getAddressBookName().equals(addressBook))
+				.forEach(obj -> obj.contactsSet.stream()
+						.sorted((contact1,contact2)->((Integer)contact1.getZip()).compareTo((Integer)contact2.getZip()))
+						.forEach(contact->System.out.println(contact)));
+				break;			
+		}
 	}
 	
 }
