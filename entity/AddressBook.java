@@ -13,6 +13,10 @@ public class AddressBook {
 		contactsSet = new HashSet<Contact>();
 	}
 	
+	public String getAddressBookName() {
+		return addressBookName;
+	}
+
 	@Override
 	public String toString() {
 		return "AddressBooks [AddressBookName=" + addressBookName + ", contacts= " + contactsSet + "]";

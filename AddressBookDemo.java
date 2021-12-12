@@ -75,6 +75,11 @@ public class AddressBookDemo {
 					System.out.println("Count: " +count);
 				}
 			}
+			else if(num==7) {
+				System.out.println("Enter the addressBook name you want to sorted contacts of");
+				String addressBook = sc.next();
+				dictionaryServiceObj.sortContacts(addressBook);
+			}
 			else
 				System.out.println("Please enter a valid number");
 			
@@ -83,6 +88,7 @@ public class AddressBookDemo {
 			System.out.println("or Press 2 to search any person across all the addressBooks");
 			System.out.println("or Press 3 to view persons by city, 4 to view by state");
 			System.out.println("or Press 5 to get total count of persons by city, 6 to get count by state");
+			System.out.println("or Press 7 to sort contacts of addressbook and print them");
 			System.out.println("or Press 0 to display the AddressBooks and end");
 			num = sc.nextInt();
 			

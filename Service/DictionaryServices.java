@@ -85,5 +85,15 @@ public class DictionaryServices {
 		
 		return count;
 	}
-
+	
+	
+	public void sortContacts(String addressBook) {
+		
+		AddressBookDemo.addressBooksSet.stream()
+		.filter(obj -> obj.getAddressBookName().equals(addressBook))
+		.forEach(obj -> obj.contactsSet.stream()
+				.sorted((contact1,contact2)->contact1.getFirstName().compareTo(contact2.getFirstName()))
+				.forEach(contact->System.out.println(contact)));
+	}
+	
 }
