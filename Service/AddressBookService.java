@@ -1,5 +1,7 @@
 package Address_Book.Service;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 import Address_Book.AddressBookDemo;
@@ -9,6 +11,7 @@ import Address_Book.entity.Contact;
 public class AddressBookService {
 	
 	public AddressBook newAddressBook;
+	ArrayList<Contact> contactsList = new ArrayList<>();
 	
 	public void addAddressBook(String addressbookName) {
 		
@@ -26,7 +29,7 @@ public class AddressBookService {
 		int end_edits = 1;
 		while (end_edits != 0) {
 			if (decision == 1) {
-				contact.addContacts(newAddressBook.contactsSet);
+				contact.addContacts(AddressBookDemo.cityDictionary,AddressBookDemo.stateDictionary, newAddressBook.contactsSet, contactsList);
 			} else if (decision == 2) {
 				contact.editContact(newAddressBook.contactsSet);
 			} else if (decision == 3) {
@@ -38,6 +41,7 @@ public class AddressBookService {
 			decision = end_edits;
 		}
 	}
+	
 	
 	public void searchContact(String place) {
 		boolean placeFound = false;
@@ -67,4 +71,24 @@ public class AddressBookService {
 		if(personFound == false)
 			System.out.println("No such person exists");
 	}
+	
+	
+	
+	public void viewContacts(String place, int num) {
+		
+		if(num==3) { // viewing the city and person Dictionary
+			for(Map.Entry<String, ArrayList<Contact>> obj : AddressBookDemo.cityDictionary.entrySet()) {
+				if(obj.getKey().equals(place)) {
+					System.out.println(obj.getValue());
+				}
+			}
+		}else if(num == 4) { // viewing the state and person Dictionary
+			for(Map.Entry<String, ArrayList<Contact>> obj : AddressBookDemo.stateDictionary.entrySet()) {
+				if(obj.getKey().equals(place)) {
+					System.out.println(obj.getValue());
+				}
+			}
+		}
+		
+	}	
 }

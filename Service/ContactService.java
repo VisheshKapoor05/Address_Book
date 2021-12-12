@@ -1,5 +1,8 @@
 package Address_Book.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -7,7 +10,11 @@ import Address_Book.entity.Contact;
 
 public class ContactService {
 
-	public void addContacts(Set<Contact> contactsList) { // adding contacts
+	public void addContacts(HashMap<String, ArrayList<Contact>> cityDictionary, 
+							HashMap<String, ArrayList<Contact>> stateDictionary, 
+							Set<Contact> contactsSet,
+							ArrayList<Contact> contactsList) { // adding contacts
+		
 		System.out.println("Adding a contact");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -38,15 +45,19 @@ public class ContactService {
 
 		Contact add_contact = new Contact(firstName, lastName, Address, City, State, email, zip, phoneNumber);
 		// System.out.println(add_contact);
-		contactsList.add(add_contact);
-		System.out.println("contacts of Current Address book");
+		contactsSet.add(add_contact);
 		
-		for(Contact person : contactsList) {
+		dictionary(cityDictionary, add_contact, City);
+		dictionary(stateDictionary, add_contact, State);
+		
+		System.out.println("contacts of Current Address book");
+		for(Contact person : contactsSet) {
 			System.out.println(person);
 		}
 	}
 
-	public void editContact(Set<Contact> contactsList) { // editing contacts
+	
+	public void editContact(Set<Contact> contactsSet) { // editing contacts
 		System.out.println("Editing a contact");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -54,7 +65,7 @@ public class ContactService {
 		System.out.println("Enter the firstname of the contact you want to edit: ");
 		String fName = sc.next();
 		
-		for(Contact person : contactsList) 
+		for(Contact person : contactsSet) 
 		{
 			if(person.getFirstName().equals(fName)) 
 			{				
@@ -112,23 +123,57 @@ public class ContactService {
 		System.out.println("the selected contact edited successfully: ");
 	}
 
-	public void deleteContact(Set<Contact> contactsList) {
+	public void deleteContact(Set<Contact> contactsSet) {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Enter the firstname of the contact you want to delete: ");
 		String fName = sc.next();
 		
-		for(Contact person : contactsList) 
+		for(Contact person : contactsSet) 
 		{
 			if(person.getFirstName().equals(fName)) 
 			{				
-				contactsList.remove(person);
+				contactsSet.remove(person);
 				System.out.println("the selected contact deleted successfully");
 			} else {
 				System.out.println("No contact matches the first name you gave");
 			}
 		}
+	}
+	
+	
+	public void dictionary(HashMap<String, ArrayList<Contact>> dictionary, Contact add_contact, String place) {
+		if(dictionary.isEmpty()) 
+		{	
+			// if dictionary is empty, creating a new contactsList, adding the contact and storing it in dictionary
+			ArrayList<Contact> newContactsList = new ArrayList<Contact>();
+			newContactsList.add(add_contact);
+			dictionary.put(place, newContactsList);
+			System.out.println("New dictionary: "+dictionary);
+			System.out.println();
+		}
+		else if(!dictionary.containsKey(place)) 
+		{
+			// if dictionary doesn't have the city key, creating a new contactsList, adding the contact and storing key & value in dictionary
+			ArrayList<Contact> newContactsList = new ArrayList<Contact>();
+			newContactsList.add(add_contact);
+			dictionary.put(place, newContactsList);
+			System.out.println("New place in the dictionary detected: "+dictionary);
+			System.out.println();
+		}
+		else 
+		{
+			// if dictionary has the city key, adding the contact to the contactList(value) of the respective city(key)
+			for(Map.Entry<String, ArrayList<Contact>> obj : dictionary.entrySet()) {
+				System.out.println("City: "+place);
+				if(obj.getKey().equals(place)) {
+					obj.getValue().add(add_contact);
+					System.out.println("adding contact to same place in the dictionary: "+dictionary);
+					System.out.println();
+				}
+			}
+		}	
 	}
 
 }
