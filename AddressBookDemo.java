@@ -78,7 +78,13 @@ public class AddressBookDemo {
 			else if(num==7) {
 				System.out.println("Enter the addressBook name you want to sorted contacts of");
 				String addressBook = sc.next();
-				dictionaryServiceObj.sortContacts(addressBook);
+				System.out.println("Enter the following numbers you want to sort contacts: ");
+				System.out.println("1: to sort by firstName");
+				System.out.println("2: to sort by city");
+				System.out.println("3: to sort by state");
+				System.out.println("4: to sort by zip");
+				int sortByNum = sc.nextInt();
+				dictionaryServiceObj.sortContacts(addressBook, sortByNum);
 			}
 			else
 				System.out.println("Please enter a valid number");
