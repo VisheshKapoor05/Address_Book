@@ -150,8 +150,8 @@ public class ContactService {
 			ArrayList<Contact> newContactsList = new ArrayList<Contact>();
 			newContactsList.add(add_contact);
 			dictionary.put(place, newContactsList);
-			System.out.println("New dictionary: "+dictionary);
-			System.out.println();
+			//System.out.println("New dictionary: "+dictionary);
+			//System.out.println();
 		}
 		else if(!dictionary.containsKey(place)) 
 		{
@@ -159,8 +159,8 @@ public class ContactService {
 			ArrayList<Contact> newContactsList = new ArrayList<Contact>();
 			newContactsList.add(add_contact);
 			dictionary.put(place, newContactsList);
-			System.out.println("New place in the dictionary detected: "+dictionary);
-			System.out.println();
+			//System.out.println("New place in the dictionary detected: "+dictionary);
+			//System.out.println();
 		}
 		else 
 		{
@@ -169,8 +169,8 @@ public class ContactService {
 				System.out.println("City: "+place);
 				if(obj.getKey().equals(place)) {
 					obj.getValue().add(add_contact);
-					System.out.println("adding contact to same place in the dictionary: "+dictionary);
-					System.out.println();
+			//		System.out.println("adding contact to same place in the dictionary: "+dictionary);
+			//		System.out.println();
 				}
 			}
 		}	
