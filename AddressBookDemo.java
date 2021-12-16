@@ -1,8 +1,14 @@
 package Address_Book;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -25,7 +31,7 @@ public class AddressBookDemo {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Press 1 to add an address book");
+		System.out.println("Press 1 to add an address book, or 10 to read the addressBooks from the file");
 		int num = sc.nextInt();
 		
 		AddressBookService addressBookServiceObj = new AddressBookService();
@@ -41,6 +47,7 @@ public class AddressBookDemo {
 				 
 				addressBookServiceObj.addAddressBook(addressbookName);
 				addressBooksSet.add(addressBookServiceObj.newAddressBook);
+				AddressBookDemo.fileWrite(addressBooksSet);
 			}
 			else if(num==2) {
 				System.out.println("Enter the city or state you want to the person to be searched in");
@@ -86,6 +93,9 @@ public class AddressBookDemo {
 				int sortByNum = sc.nextInt();
 				dictionaryServiceObj.sortContacts(addressBook, sortByNum);
 			}
+			else if(num==10) {
+				AddressBookDemo.fileRead();
+			}
 			else
 				System.out.println("Please enter a valid number");
 			
@@ -106,5 +116,28 @@ public class AddressBookDemo {
 			}
 		}			
 	}
-
+	
+	
+	public static void fileWrite(Set<AddressBook> addressBooksSet) {
+		Path path = Paths.get("D:/Bridgelabz/BridgeLabz/Assignments/AddressBook/src/Address_Book/Files/AddressBookFile.txt");
+		byte[] byteArray = addressBooksSet.toString().getBytes();
+		try {
+			Files.write(path, byteArray, StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	
+	public static void fileRead() {
+		Path path = Paths.get("D:/Bridgelabz/BridgeLabz/Assignments/AddressBook/src/Address_Book/Files/AddressBookFile.txt");
+		try {
+			List<String> list = Files.readAllLines(path);
+			System.out.println(list);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
+	
